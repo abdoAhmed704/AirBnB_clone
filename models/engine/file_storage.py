@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-"""
-the data base engine
-"""
 import json
 import os
 from models.base_model import BaseModel
@@ -35,6 +32,7 @@ class FileStorage:
             obj_dictionary[obj] = FileStorage.__objects[obj].to_dict()
         with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
             json.dump(obj_dictionary, f)
+
 
     def reload(self):
         """

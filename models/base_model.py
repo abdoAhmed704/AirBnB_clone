@@ -10,6 +10,9 @@ import models
 class BaseModel:
     """BaseModel"""
     def __init__(self, *args, **kwargs):
+        """
+        init of the class
+        """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
@@ -28,14 +31,14 @@ class BaseModel:
 
     def save(self):
         """
-
+        save to json file
         """
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """
-
+        good dictionary
         """
         my_dict = self.__dict__.copy()
         updates = {
@@ -48,7 +51,7 @@ class BaseModel:
 
     def __str__(self):
         """
-
+        good represntation
         """
         class_name = self.__class__.__name__
         return f"[{class_name}] ({self.id}) {self.__dict__}"
