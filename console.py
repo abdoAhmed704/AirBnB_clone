@@ -170,9 +170,8 @@ class HBNBCommand(cmd.Cmd):
         comm = list_of_args[1].split('(')
 
         cmd_met = comm[0]
-        
+
         extra_arg = comm[1].split(')')[0]
-        
 
         new_methods = {
                 'all': self.do_all,
