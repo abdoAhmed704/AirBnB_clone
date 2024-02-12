@@ -45,16 +45,13 @@ class FileStorage:
         """
         if os.path.isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
-                try:
-                    obj_dictionary = json.load(f)
+                obj_dictionary = json.load(f)
 
-                    for k, v in obj_dictionary.items():
-                        cls_name, object_id = k.split('.')
+                for k, v in obj_dictionary.items():
+                    cls_name, object_id = k.split('.')
 
-                        cls = eval(cls_name)
+                    cls = eval(cls_name)
 
-                        inst = cls(**v)
+                    inst = cls(**v)
 
-                        FileStorage.__objects[k] = inst
-                except Exception:
-                    pass
+                    FileStorage.__objects[k] = inst
