@@ -9,6 +9,7 @@ import shlex
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
+from models.city import City
 
 
 class HBNBCommand(cmd.Cmd):
