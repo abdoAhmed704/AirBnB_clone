@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 """
-a Module for State class.
+Module for the State class.
 """
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
     """
-    Represent state class
+    Represent a state.
+
+    Attributes:
+        name (str): The name of the state.
     """
 
     name = ""
