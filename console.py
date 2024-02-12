@@ -14,6 +14,7 @@ from models.state import State
 from models.city import City
 from models import storage
 from models.review import Review
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -44,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         elif args not in HBNBCommand.my_class:
             print("** class doesn't exist **")
         else:
-            intance = eval("BaseModel()")
+            intance = eval(f"{args}()")
             FileStorage.save(intance)
             print(intance.id)
 
