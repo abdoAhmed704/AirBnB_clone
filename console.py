@@ -136,6 +136,55 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def do_count(self, arg):
+        """
+        Counts the instance
+        """
+        All_objs = storage.all()
+
+        cmmands = shlex.split(arg)
+
+        if arg:
+            class_namee = cmmands[0]
+
+        if cmmands:
+            iterayion = 0
+            if class_namee in self.my_class:
+                for obj in All_objs.values():
+                    if class_namee == obj.__class__.__name__:
+                        iterayion += 1
+                print(iterayion)
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
+
+    def default(self, arg):
+        """
+        another behavirs
+        """
+        list_of_args = arg.split('.')
+
+        class_mame = list_of_args[0]
+
+        comm = list_of_args[1].split('(')
+
+        extra_arg = comm[1].split(')')[0]
+        cmd_met = comm[0]
+
+        new_methods = {
+                'all': self.do_all,
+                'show': self.do_show,
+                'destroy': self.do_destroy,
+                'update': self.do_update,
+                'count': self.do_count
+                }
+        if cmd_met in new_methods.keys():
+            return new_methods[cmd_met](f"{class_mame} {comm}")
+
+        print("*** Unknown syntax: {}".format(arg))
+        return False
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
