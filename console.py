@@ -169,8 +169,10 @@ class HBNBCommand(cmd.Cmd):
 
         comm = list_of_args[1].split('(')
 
-        extra_arg = comm[1].split(')')[0]
         cmd_met = comm[0]
+        
+        extra_arg = comm[1].split(')')[0]
+        
 
         new_methods = {
                 'all': self.do_all,
@@ -180,7 +182,7 @@ class HBNBCommand(cmd.Cmd):
                 'count': self.do_count
                 }
         if cmd_met in new_methods.keys():
-            return new_methods[cmd_met](f"{class_mame} {comm}")
+            return new_methods[cmd_met](f"{class_mame} {extra_arg}")
 
         print("*** Unknown syntax: {}".format(arg))
         return False
