@@ -5,10 +5,10 @@ console
 import cmd
 import os
 import json
+import shlex
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
-import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         coms = shlex.split(args)
 
         if len(coms) == 0:
-            for v in objs_storage.values():
+            for k, v in objs_storage.items():
                 print(str(v))
         elif coms[0] not in HBNBCommand.my_class:
             print("** class doesn't exist **")
@@ -107,6 +107,27 @@ class HBNBCommand(cmd.Cmd):
                     instance = objs_storage[f"{coms[0]}.{coms[1]}"]
                     setattr(instance, str(coms[2]), coms[3])
                     storage.save()
+
+    def do_destroy(self, arg):
+        """
+        delete an instance
+        """
+        coms = shlex.split(arg)
+
+        if len(coms) == 0:
+            print("** class name missing **")
+        elif coms[0] not in self.my_class:
+            print("** class doesn't exist **")
+        elif len(coms) < 2:
+            print("** instance id missing **")
+        else:
+            objs = storage.all()
+            k = "{}.{}".format(coms[0], coms[1])
+            if k in objs:
+                del objs[k]
+                storage.save()
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
