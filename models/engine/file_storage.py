@@ -2,6 +2,7 @@
 import json
 import os
 from models.base_model import BaseModel
+from models.city import City
 
 
 class FileStorage:
