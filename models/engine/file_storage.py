@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+the class that handel the json file
+"""
+
 import json
 import os
 from models.base_model import BaseModel
