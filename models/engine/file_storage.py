@@ -12,26 +12,26 @@ from models.city import City
 
 class FileStorage:
     """
-
+    FileStorage
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
         """
-
+        prints all
         """
         return FileStorage.__objects
 
     def new(self, obj):
         """
-
+        add new
         """
         FileStorage.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
         """
-
+        save to json file
         """
         obj_dictionary = {}
         for obj in FileStorage.__objects.keys():
@@ -41,7 +41,7 @@ class FileStorage:
 
     def reload(self):
         """
-
+        load from json
         """
         if os.path.isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
